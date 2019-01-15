@@ -1,0 +1,9 @@
+c:\users\hisof_000\documents\visual studio 2015\Projects\BrowserTest\BrowserTest\bin\Debug\BrowserTest.exe.config
+c:\users\hisof_000\documents\visual studio 2015\Projects\BrowserTest\BrowserTest\bin\Debug\BrowserTest.exe
+c:\users\hisof_000\documents\visual studio 2015\Projects\BrowserTest\BrowserTest\bin\Debug\BrowserTest.pdb
+c:\users\hisof_000\documents\visual studio 2015\Projects\BrowserTest\BrowserTest\obj\Debug\BrowserTest.csprojResolveAssemblyReference.cache
+c:\users\hisof_000\documents\visual studio 2015\Projects\BrowserTest\BrowserTest\obj\Debug\BrowserTest.Form1.resources
+c:\users\hisof_000\documents\visual studio 2015\Projects\BrowserTest\BrowserTest\obj\Debug\BrowserTest.Properties.Resources.resources
+c:\users\hisof_000\documents\visual studio 2015\Projects\BrowserTest\BrowserTest\obj\Debug\BrowserTest.csproj.GenerateResource.Cache
+c:\users\hisof_000\documents\visual studio 2015\Projects\BrowserTest\BrowserTest\obj\Debug\BrowserTest.exe
+c:\users\hisof_000\documents\visual studio 2015\Projects\BrowserTest\BrowserTest\obj\Debug\BrowserTest.pdb

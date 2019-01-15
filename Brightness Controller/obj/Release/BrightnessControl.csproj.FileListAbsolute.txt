@@ -1,0 +1,19 @@
+C:\Users\hisof_000\Documents\Visual Studio 2015\Projects\BrowserTest\BrowserTest\bin\Release\BrightnessControl.exe.config
+C:\Users\hisof_000\Documents\Visual Studio 2015\Projects\BrowserTest\BrowserTest\bin\Release\BrightnessControl.exe
+C:\Users\hisof_000\Documents\Visual Studio 2015\Projects\BrowserTest\BrowserTest\bin\Release\BrightnessControl.pdb
+C:\Users\hisof_000\Documents\Visual Studio 2015\Projects\BrowserTest\BrowserTest\obj\Release\BrightnessControl.BrightnessControl.resources
+C:\Users\hisof_000\Documents\Visual Studio 2015\Projects\BrowserTest\BrowserTest\obj\Release\BrightnessControl.Properties.Resources.resources
+C:\Users\hisof_000\Documents\Visual Studio 2015\Projects\BrowserTest\BrowserTest\obj\Release\BrightnessControl.csproj.GenerateResource.Cache
+C:\Users\hisof_000\Documents\Visual Studio 2015\Projects\BrowserTest\BrowserTest\obj\Release\BrightnessControl.exe
+C:\Users\hisof_000\Documents\Visual Studio 2015\Projects\BrowserTest\BrowserTest\obj\Release\BrightnessControl.pdb
+C:\Users\hisof_000\Documents\Visual Studio 2015\Projects\BrowserTest\BrowserTest\obj\Release\BrightnessControl.csprojResolveAssemblyReference.cache
+E:\Downloads\Programs\BrowserTest\BrowserTest\obj\Release\BrightnessControl.csprojResolveAssemblyReference.cache
+E:\Downloads\Programs\BrowserTest\BrowserTest\obj\Release\BrightnessControl.BrightnessControl.resources
+E:\Downloads\Programs\BrowserTest\BrowserTest\obj\Release\BrightnessControl.csproj.GenerateResource.cache
+E:\Downloads\Programs\BrowserTest\BrowserTest\obj\Release\BrightnessControl.csproj.CoreCompileInputs.cache
+E:\Downloads\Programs\BrowserTest\BrowserTest\bin\Release\Brightness Controller.exe.config
+E:\Downloads\Programs\BrowserTest\BrowserTest\bin\Release\Brightness Controller.exe
+E:\Downloads\Programs\BrowserTest\BrowserTest\bin\Release\Brightness Controller.pdb
+E:\Downloads\Programs\BrowserTest\BrowserTest\obj\Release\Brightness_Controller.Properties.Resources.resources
+E:\Downloads\Programs\BrowserTest\BrowserTest\obj\Release\Brightness Controller.exe
+E:\Downloads\Programs\BrowserTest\BrowserTest\obj\Release\Brightness Controller.pdb
