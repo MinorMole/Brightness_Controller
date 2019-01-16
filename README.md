@@ -34,8 +34,6 @@ It's work with most of GPU and monitor (even latest 4K monitor) and work well wi
 
 ## [Download](https://github.com/MinorMole/Brightness_Controller/releases)
 
-
-
 ## Note
 
 * I'm build x64 version only.
