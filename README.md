@@ -39,3 +39,7 @@ It's work with most of GPU and monitor (even latest 4K monitor) and work well wi
 * I'm build x64 version only.
 * If you want it to run it on the startup open Run panel and type "shell:startup" then place the "Brightness Controller.exe" there.
 * If you have change any connector of your monitor or just start PC up from sleep mode while the software still running you may need to right-click at the Brightness Controller notify icon and click "Reload Monitor"
+
+## Licence
+
+Licenced under the [MIT License](https://github.com/MinorMole/Brightness_Controller/blob/master/LICENSE).
