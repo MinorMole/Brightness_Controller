@@ -1,6 +1,6 @@
-[![GitHub Release](https://github-basic-badges.herokuapp.com/release/MinorMole/Brightness_Controller.svg?color=blue&text=Release)](https://github.com/MinorMole/Brightness_Controller/releases)
-[![GitHub Download Count](https://github-basic-badges.herokuapp.com/downloads/MinorMole/Brightness_Controller/total.svg?color=green&text=Download)](https://github.com/MinorMole/Brightness_Controller/releases)
-[![GitHub License](https://github-basic-badges.herokuapp.com/license/MinorMole/Brightness_Controller.svg?color=yellow&text=License)](/LICENSE)
+[![GitHub release](https://img.shields.io/github/release/MinorMole/Brightness_Controller.svg)](https://gitHub.com/MinorMole/Brightness_Controller/releases)
+[![Github all releases](https://img.shields.io/github/downloads/MinorMole/Brightness_Controller/total.svg)](https://GitHub.com/MinorMole/Brightness_Controller/releases/)
+[![GitHub license](https://img.shields.io/github/license/MinorMole/Brightness_Controller.svg)](https://github.com/MinorMole/Brightness_Controller/blob/master/LICENSE)
 
 ## Introduction
 
