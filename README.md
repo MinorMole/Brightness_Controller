@@ -12,10 +12,16 @@ It's work with most of GPU and monitor (even latest 4K monitor) and work well wi
 
 #### Because I'm not familiar with C# language any improved version of the code is welcome and much appreciate!
 
-* My test setup was...
+* My computer was...
 
   - Monitor: LG 27UD68-W 4K display connect with DisplayPort.
-  - GPU: ASUS GTX 970
+  - GPU: NVIDIA Geforce GTX 970
+  - OS: Windows 10 version 1809
+  
+* My another computer was...
+
+  - Monitor: 49” QLED Gaming Monitor CHG90 display connect with DisplayPort.
+  - GPU: NVIDIA Geforce GTX 1070
   - OS: Windows 10 version 1809
 
 ## Features
