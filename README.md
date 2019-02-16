@@ -10,7 +10,7 @@ Brightness Controller is a PC monitor brightness controller (control the actual 
 
 It's work with most of GPU and monitor (even latest 4K monitor) and work well with HDMI, DisplayPort and may work with some DVI, D-Sub port too, but more research needed! It's support from the latest Windows 10 to Windows Vista and may work with Windows XP too (but who care?!)
 
-#### Because I'm not familiar with C# language any improved version of the code is welcome and much appreciate!
+#### Because I'm not familiar with C# language, any improved version of the code from you is welcome and much appreciate!
 
 #### [List of computer specification that works with Brightness Controller](https://github.com/MinorMole/Brightness_Controller/wiki/List-of-computer-specification-that-works-with-Brightness-Controller)
 
