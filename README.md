@@ -12,17 +12,7 @@ It's work with most of GPU and monitor (even latest 4K monitor) and work well wi
 
 #### Because I'm not familiar with C# language any improved version of the code is welcome and much appreciate!
 
-* My computer was...
-
-  - Monitor: LG 27UD68-W 4K display connect with DisplayPort.
-  - GPU: NVIDIA Geforce GTX 970
-  - OS: Windows 10 version 1809
-  
-* My another computer was...
-
-  - Monitor: 49” QLED Gaming Monitor CHG90 display connect with DisplayPort.
-  - GPU: NVIDIA Geforce GTX 1070
-  - OS: Windows 10 version 1809
+## [List of computer specification that works with Brightness Controller](https://github.com/MinorMole/Brightness_Controller/wiki/List-of-computer-specification-that-works-with-Brightness-Controller)
 
 ## Features
 
@@ -42,9 +32,15 @@ It's work with most of GPU and monitor (even latest 4K monitor) and work well wi
 
 ## Note
 
-* I'm build x64 version only.
-* If you want it to run it on the startup open Run panel and type "shell:startup" then place the "Brightness Controller.exe" there.
-* If you have change any connector of your monitor or just start PC up from sleep mode while the software still running you may need to right-click at the Brightness Controller notify icon and click "Reload Monitor"
+If you have change any connector of your monitor or just start PC up from sleep mode while the software still running you may need to right-click at the Brightness Controller notify icon and click "Reload Monitor"
+
+## Tip
+
+Do following this instruction If you want the program to startup with Windows.
+
+1. Open run dialog by using "Windows Key + R" hotkey.
+2. Type "shell:startup" and click OK.
+3. Place the "Brightness Controller.exe" on the startup folder.
 
 ## Licence
 
