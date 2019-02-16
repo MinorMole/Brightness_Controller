@@ -37,3 +37,4 @@ E:\Development\C# Project\Brightness_Controller\Brightness Controller\obj\Releas
 E:\Development\C# Project\Brightness_Controller\Brightness Controller\obj\Release\Brightness Controller.csproj.CoreCompileInputs.cache
 E:\Development\C# Project\Brightness_Controller\Brightness Controller\obj\Release\Brightness Controller.exe
 E:\Development\C# Project\Brightness_Controller\Brightness Controller\obj\Release\Brightness Controller.pdb
+E:\Development\C# Project\Brightness_Controller\Brightness Controller\obj\Release\Brightness Controller.csprojAssemblyReference.cache

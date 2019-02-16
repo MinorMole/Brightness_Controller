@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("WolvEden")]
 [assembly: AssemblyProduct("Brightness Controller")]
-[assembly: AssemblyCopyright("Copyright © 2018 HKSoft & Wolverlone")]
+[assembly: AssemblyCopyright("Copyright © 2019 HKSoft & Wolverlone")]
 [assembly: AssemblyTrademark("HKSoft & Wolverlone")]
 [assembly: AssemblyCulture("")]
 
