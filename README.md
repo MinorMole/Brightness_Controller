@@ -12,7 +12,7 @@ It's work with most of GPU and monitor (even latest 4K monitor) and work well wi
 
 #### Because I'm not familiar with C# language any improved version of the code is welcome and much appreciate!
 
-## [List of computer specification that works with Brightness Controller](https://github.com/MinorMole/Brightness_Controller/wiki/List-of-computer-specification-that-works-with-Brightness-Controller)
+#### [List of computer specification that works with Brightness Controller](https://github.com/MinorMole/Brightness_Controller/wiki/List-of-computer-specification-that-works-with-Brightness-Controller)
 
 ## Features
 
