@@ -1,1 +1,0 @@
-mpress.exe "Brightness Controller.exe" -m -s

@@ -227,11 +227,29 @@ namespace BrightnessControl
             if (bc_temp.Count == 0)
             {
                 Location = new Point((Screen.PrimaryScreen.WorkingArea.Width - Width), (Screen.PrimaryScreen.WorkingArea.Height - Height));
-                MessageBox.Show("Your monitor does not support brightness setting!", "Brightness Controller by HKSoft & Wolverlone");
-                Application.Exit();
+                RegistryKey registryKey = Registry.CurrentUser.OpenSubKey("Software\\Brightness Controller");
+                if ((string)registryKey.GetValue("CHECK_ERROR_01", "") == "1")
+                {
+                    DialogResult dialogResult = MessageBox.Show("Your monitor does not support brightness setting!" + Environment.NewLine + "Do you want to check again?", "Brightness Controller", MessageBoxButtons.YesNo);
+                    if (dialogResult == DialogResult.Yes)
+                    {
+                        RegistryKey exampleRegistryKey = Registry.CurrentUser.CreateSubKey("Software\\Brightness Controller");
+                        exampleRegistryKey.SetValue("CHECK_ERROR_01", "0");
+                        Process.Start(System.Reflection.Assembly.GetEntryAssembly().Location);
+                    }
+                }
+                else
+                {
+                    RegistryKey exampleRegistryKey = Registry.CurrentUser.CreateSubKey("Software\\Brightness Controller");
+                    exampleRegistryKey.SetValue("CHECK_ERROR_01", "1");
+                    Process.Start(System.Reflection.Assembly.GetEntryAssembly().Location);
+                }
+                Process.GetCurrentProcess().Kill();
             }
             else
             {
+                RegistryKey exampleRegistryKey = Registry.CurrentUser.CreateSubKey("Software\\Brightness Controller");
+                exampleRegistryKey.SetValue("CHECK_ERROR_01", "0");
                 bc = bc_temp.ToArray();
             }
         }
@@ -361,7 +379,7 @@ namespace BrightnessControl
         {
             if (increaseBrightnessToolStripMenuItem.Text == decreaseBrightnessToolStripMenuItem.Text)
             {
-                MessageBox.Show("Both key need to be the different key!", "Brightness Controller by HKSoft & Wolverlone");
+                MessageBox.Show("Both key need to be the different key!", "Brightness Controller");
             }
             else if (increaseBrightnessToolStripMenuItem.Text != "Increase Brightness" && decreaseBrightnessToolStripMenuItem.Text != "Decrease Brightness")
             {
@@ -376,7 +394,7 @@ namespace BrightnessControl
             }
             else
             {
-                MessageBox.Show("Both key need to be set!", "Brightness Controller by HKSoft & Wolverlone");
+                MessageBox.Show("Both key need to be set!", "Brightness Controller");
             }
         }
 
@@ -448,21 +466,22 @@ namespace BrightnessControl
             IntPtr ptr = MonitorFromWindow(windowHandle_last, dwFlags);
             if (!GetNumberOfPhysicalMonitorsFromHMONITOR(ptr, ref _physicalMonitorsCount))
             {
-                MessageBox.Show("Monitor not support brightness setting!", "Brightness Controller by HKSoft & Wolverlone");
+                MessageBox.Show("Cannot get monitor count!", "Brightness Controller");
                 throw new Exception("Cannot get monitor count!");
             }
             _physicalMonitorArray = new PHYSICAL_MONITOR[_physicalMonitorsCount];
 
             if (!GetPhysicalMonitorsFromHMONITOR(ptr, _physicalMonitorsCount, _physicalMonitorArray))
             {
-                MessageBox.Show("Monitor not support brightness setting!", "Brightness Controller by HKSoft & Wolverlone");
+                MessageBox.Show("Cannot get physical monitor handle!", "Brightness Controller");
                 throw new Exception("Cannot get physical monitor handle!");
             }
             _currentMonitorHandle = _physicalMonitorArray[0].hPhysicalMonitor;
 
             if (!GetMonitorBrightness(_currentMonitorHandle, ref _minValue, ref _currentValue, ref _maxValue))
             {
-                //throw new Exception("Cannot get monitor brightness!");
+                MessageBox.Show("Cannot get monitor brightness!", "Brightness Controller");
+                throw new Exception("Cannot get monitor brightness!");
             }
             return getBrightnessStat();
         }
@@ -481,23 +500,24 @@ namespace BrightnessControl
             IntPtr ptr = MonitorFromWindow(windowHandle, dwFlags);
             if (!GetNumberOfPhysicalMonitorsFromHMONITOR(ptr, ref _physicalMonitorsCount))
             {
-                MessageBox.Show("Monitor not support brightness setting!", "Brightness Controller by HKSoft & Wolverlone");
+                MessageBox.Show("Cannot get monitor count!", "Brightness Controller");
                 throw new Exception("Cannot get monitor count!");
             }
             _physicalMonitorArray = new PHYSICAL_MONITOR[_physicalMonitorsCount];
 
             if (!GetPhysicalMonitorsFromHMONITOR(ptr, _physicalMonitorsCount, _physicalMonitorArray))
             {
-                MessageBox.Show("Monitor not support brightness setting!", "Brightness Controller by HKSoft & Wolverlone");
+                MessageBox.Show("Cannot get phisical monitor handle!", "Brightness Controller");
                 throw new Exception("Cannot get phisical monitor handle!");
             }
             _currentMonitorHandle = _physicalMonitorArray[0].hPhysicalMonitor;
 
-            if (!GetMonitorBrightness(_currentMonitorHandle, ref _minValue, ref _currentValue, ref _maxValue))
-            {
-                //MessageBox.Show("Monitor not support brightness setting!", "Brightness Controller by HKSoft & Wolverlone");
-                throw new Exception("Cannot get monitor brightness!");
-            }
+            // Hard Code fix The ERROR_01
+            //if (!GetMonitorBrightness(_currentMonitorHandle, ref _minValue, ref _currentValue, ref _maxValue))
+            //{
+            //    MessageBox.Show("Cannot get monitor brightness!", "Brightness Controller");
+            //    throw new Exception("Cannot get monitor brightness!");
+            //}
         }
 
         public void SetBrightness(int newValue)

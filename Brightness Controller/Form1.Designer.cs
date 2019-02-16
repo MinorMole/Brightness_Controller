@@ -138,7 +138,7 @@
             this.Name = "BrightnessControl";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Brightness Controller by HKSoft & Wolverlone";
+            this.Text = "Brightness Controller";
             this.TopMost = true;
             this.Deactivate += new System.EventHandler(this.BrightnessControl_Deactivate);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.BrightnessControl_FormClosing);
@@ -163,4 +163,3 @@
         private System.Windows.Forms.ToolStripTextBox hotKeyToolStripMenuItem;
     }
 }
-
