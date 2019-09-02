@@ -59,7 +59,8 @@
             this.reloadMonitorToolStripMenuItem,
             this.exitToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(241, 127);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(241, 133);
+            this.contextMenuStrip1.Opening += new System.ComponentModel.CancelEventHandler(this.ContextMenuStrip1_Opening);
             // 
             // assignHotKeyToolStripMenuItem
             // 
@@ -70,11 +71,12 @@
             this.confirmToolStripMenuItem,
             this.removeHotkeyToolStripMenuItem});
             this.assignHotKeyToolStripMenuItem.Name = "assignHotKeyToolStripMenuItem";
-            this.assignHotKeyToolStripMenuItem.Size = new System.Drawing.Size(240, 30);
+            this.assignHotKeyToolStripMenuItem.Size = new System.Drawing.Size(240, 32);
             this.assignHotKeyToolStripMenuItem.Text = "Assign HotKey";
             // 
             // hotKeyToolStripMenuItem
             // 
+            this.hotKeyToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.hotKeyToolStripMenuItem.Name = "hotKeyToolStripMenuItem";
             this.hotKeyToolStripMenuItem.ReadOnly = true;
             this.hotKeyToolStripMenuItem.Size = new System.Drawing.Size(150, 31);
@@ -82,6 +84,7 @@
             // 
             // increaseBrightnessToolStripMenuItem
             // 
+            this.increaseBrightnessToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.increaseBrightnessToolStripMenuItem.Name = "increaseBrightnessToolStripMenuItem";
             this.increaseBrightnessToolStripMenuItem.ReadOnly = true;
             this.increaseBrightnessToolStripMenuItem.Size = new System.Drawing.Size(110, 31);
@@ -90,6 +93,7 @@
             // 
             // decreaseBrightnessToolStripMenuItem
             // 
+            this.decreaseBrightnessToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.decreaseBrightnessToolStripMenuItem.Name = "decreaseBrightnessToolStripMenuItem";
             this.decreaseBrightnessToolStripMenuItem.ReadOnly = true;
             this.decreaseBrightnessToolStripMenuItem.Size = new System.Drawing.Size(110, 31);
@@ -99,28 +103,28 @@
             // confirmToolStripMenuItem
             // 
             this.confirmToolStripMenuItem.Name = "confirmToolStripMenuItem";
-            this.confirmToolStripMenuItem.Size = new System.Drawing.Size(222, 30);
+            this.confirmToolStripMenuItem.Size = new System.Drawing.Size(240, 34);
             this.confirmToolStripMenuItem.Text = "Confirm";
             this.confirmToolStripMenuItem.Click += new System.EventHandler(this.confirmToolStripMenuItem_Click);
             // 
             // removeHotkeyToolStripMenuItem
             // 
             this.removeHotkeyToolStripMenuItem.Name = "removeHotkeyToolStripMenuItem";
-            this.removeHotkeyToolStripMenuItem.Size = new System.Drawing.Size(222, 30);
+            this.removeHotkeyToolStripMenuItem.Size = new System.Drawing.Size(240, 34);
             this.removeHotkeyToolStripMenuItem.Text = "Remove Hotkey";
             this.removeHotkeyToolStripMenuItem.Click += new System.EventHandler(this.removeHotkeyToolStripMenuItem_Click);
             // 
             // reloadMonitorToolStripMenuItem
             // 
             this.reloadMonitorToolStripMenuItem.Name = "reloadMonitorToolStripMenuItem";
-            this.reloadMonitorToolStripMenuItem.Size = new System.Drawing.Size(240, 30);
+            this.reloadMonitorToolStripMenuItem.Size = new System.Drawing.Size(240, 32);
             this.reloadMonitorToolStripMenuItem.Text = "Reload Monitor";
             this.reloadMonitorToolStripMenuItem.Click += new System.EventHandler(this.reloadMonitorToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(240, 30);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(240, 32);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 

@@ -40,6 +40,7 @@ namespace BrightnessControl
                 RegistryKey registryKey = Registry.CurrentUser.OpenSubKey("Software\\Brightness Controller");
                 string decreaseBrightness_HotKey_reg = registryKey.GetValue("decreaseBrightness_HotKey", "").ToString();
                 string increaseBrightness_HotKey_reg = registryKey.GetValue("increaseBrightness_HotKey", "").ToString();
+                registryKey.Dispose();
 
                 if (decreaseBrightness_HotKey_reg != "" && increaseBrightness_HotKey_reg != "")
                 {
@@ -47,6 +48,7 @@ namespace BrightnessControl
 
                     increaseHotkeyValue = (Int32)registryKey.GetValue("increaseBrightness_HotKey_Value", 0);
                     decreaseHotkeyValue = (Int32)registryKey.GetValue("decreaseBrightness_HotKey_Value", 0);
+                    registryKey.Dispose();
 
                     int FirstHotkeyId = 1;
                     Boolean F6Registered = RegisterHotKey(Handle, FirstHotkeyId, 0x0000, decreaseHotkeyValue);
@@ -77,6 +79,7 @@ namespace BrightnessControl
             Opacity = 100;
             WindowState = FormWindowState.Minimized;
             notifyIcon1.Visible = true;
+            GC.Collect();
         }
 
         protected override void WndProc(ref Message m)
@@ -310,6 +313,8 @@ namespace BrightnessControl
                 }
             }
 
+            GC.Collect();
+
         }
 
         private void updateTrackBar(TrackBar tb, uint[] brightness)
@@ -317,6 +322,7 @@ namespace BrightnessControl
             tb.Minimum = (int)brightness[0];
             tb.Maximum = (int)brightness[2];
             tb.Value = (int)brightness[1];
+            GC.Collect();
         }
 
         private void notifyIcon1_MouseDoubleClick(object sender, MouseEventArgs e)
@@ -325,6 +331,7 @@ namespace BrightnessControl
             WindowState = FormWindowState.Normal;
             Location = new Point((Screen.PrimaryScreen.WorkingArea.Width - Width) , (Screen.PrimaryScreen.WorkingArea.Height - Height));
             Activate();
+            GC.Collect();
         }
 
         private void BrightnessControl_FormClosing(object sender, FormClosingEventArgs e)
@@ -334,6 +341,7 @@ namespace BrightnessControl
                 notifyIcon1.Visible = true;
                 Hide();
                 e.Cancel = true;
+                GC.Collect();
             }
         }
 
@@ -396,6 +404,11 @@ namespace BrightnessControl
             {
                 MessageBox.Show("Both key need to be set!", "Brightness Controller");
             }
+        }
+
+        private void ContextMenuStrip1_Opening(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            GC.Collect();
         }
 
         private void removeHotkeyToolStripMenuItem_Click(object sender, EventArgs e)
@@ -531,6 +544,7 @@ namespace BrightnessControl
         {
             Dispose(true);
             GC.SuppressFinalize(this);
+            GC.Collect();
         }
 
         protected virtual void Dispose(bool disposing)

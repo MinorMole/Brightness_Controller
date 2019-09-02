@@ -52,7 +52,7 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject />
+    <StartupObject>BrightnessControl.Program</StartupObject>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
