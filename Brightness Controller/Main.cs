@@ -6,7 +6,6 @@ using System.Drawing;
 using System.IO;
 using System.Net;
 using System.Runtime.InteropServices;
-using System.Threading;
 using System.Windows.Forms;
 
 namespace BrightnessControl
@@ -99,7 +98,6 @@ namespace BrightnessControl
                     case 1:
 
                         //  trackBar[0].Value = 25;
-
 
                         for (int num = 0; num < trackBar.Length; num++)
                         {
@@ -210,8 +208,19 @@ namespace BrightnessControl
             ClientSize = new Size(trackBar[0].Location.X + trackBar[0].Width + 6, trackBar[trackBar.Length - 1].Location.Y + trackBar[trackBar.Length - 1].Height - 3);
             Location = new Point((Screen.PrimaryScreen.WorkingArea.Width - Width), (Screen.PrimaryScreen.WorkingArea.Height - Height));
 
-        // Delete Old Update File
-        TryAgain: try
+            // Check Startup with Windows
+            if (System.Reflection.Assembly.GetEntryAssembly().Location == Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\Microsoft\\Windows\\Start Menu\\Programs\\Startup\\Brightness Controller.exe")
+            {
+                addStartupToolStripMenuItem.Enabled = false;
+                addStartupToolStripMenuItem.Text = "Windows Startup (On)";
+            }
+            else
+            {
+                addStartupToolStripMenuItem.Text = "Windows Startup (Off)";
+            }
+
+            // Delete Old Update File
+            TryAgain: try
             {
                 string OldExeLocation = System.Reflection.Assembly.GetEntryAssembly().Location + ".old";
                 if (File.Exists(OldExeLocation))
@@ -237,6 +246,7 @@ namespace BrightnessControl
                     }
                 }
             } catch (Exception) {}
+
         }
 
         private void scanScreen()
@@ -493,6 +503,24 @@ namespace BrightnessControl
                 }
             }
             return taskBarLocation;
+        }
+
+        private void AddStartupToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string AppData = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\Microsoft\\Windows\\Start Menu\\Programs\\Startup\\Brightness Controller.exe";
+            if (File.Exists(AppData))
+            {
+                try { File.Move(AppData, AppData + ".old"); } catch (Exception) { }
+                try { File.Move(System.Reflection.Assembly.GetEntryAssembly().Location, AppData); } catch (Exception) { }
+                MessageBox.Show("Please restart your computer for the applied changes to take effect.");
+                Application.Exit();
+            }
+            else
+            {
+                File.Move(System.Reflection.Assembly.GetEntryAssembly().Location, AppData);
+                Process.Start(AppData);
+                Application.Exit();
+            }
         }
 
         private void Updater()
