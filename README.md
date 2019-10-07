@@ -34,14 +34,6 @@ It's work with most of GPU and monitor (even latest 4K monitor) and work well wi
 
 If you have change any connector of your monitor or just start PC up from sleep mode while the software still running you may need to right-click at the Brightness Controller notify icon and click "Reload Monitor"
 
-## Tip
-
-Do following this instruction If you want the program to startup with Windows.
-
-1. Open run dialog by using "Windows Key + R" hotkey.
-2. Type "shell:startup" and click OK.
-3. Place the "Brightness Controller.exe" on the startup folder.
-
 ## Licence
 
 Licenced under the [MIT License](https://github.com/MinorMole/Brightness_Controller/blob/master/LICENSE).
