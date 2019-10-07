@@ -6,6 +6,7 @@ using System.Drawing;
 using System.IO;
 using System.Net;
 using System.Runtime.InteropServices;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace BrightnessControl
@@ -215,6 +216,7 @@ namespace BrightnessControl
                 string OldExeLocation = System.Reflection.Assembly.GetEntryAssembly().Location + ".old";
                 if (File.Exists(OldExeLocation))
                 {
+                    Thread.Sleep(1000);
                     File.Delete(OldExeLocation);
                 }
             }
