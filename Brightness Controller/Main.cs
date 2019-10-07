@@ -42,7 +42,6 @@ namespace BrightnessControl
                 RegistryKey registryKey = Registry.CurrentUser.OpenSubKey("Software\\Brightness Controller");
                 string decreaseBrightness_HotKey_reg = registryKey.GetValue("decreaseBrightness_HotKey", "").ToString();
                 string increaseBrightness_HotKey_reg = registryKey.GetValue("increaseBrightness_HotKey", "").ToString();
-                registryKey.Dispose();
 
                 if (decreaseBrightness_HotKey_reg != "" && increaseBrightness_HotKey_reg != "")
                 {
@@ -50,7 +49,6 @@ namespace BrightnessControl
 
                     increaseHotkeyValue = (Int32)registryKey.GetValue("increaseBrightness_HotKey_Value", 0);
                     decreaseHotkeyValue = (Int32)registryKey.GetValue("decreaseBrightness_HotKey_Value", 0);
-                    registryKey.Dispose();
 
                     int FirstHotkeyId = 1;
                     Boolean F6Registered = RegisterHotKey(Handle, FirstHotkeyId, 0x0000, decreaseHotkeyValue);
@@ -90,6 +88,9 @@ namespace BrightnessControl
             if (m.Msg == 0x0312)
             {
                 int id = m.WParam.ToInt32();
+
+                scanScreen();
+
                 // MessageBox.Show(string.Format("Hotkey #{0} pressed", id));
 
                 // 6. Handle what will happen once a respective hotkey is pressed
@@ -172,15 +173,32 @@ namespace BrightnessControl
             base.WndProc(ref m);
         }
 
+        internal class NoFocusTrackBar : System.Windows.Forms.TrackBar
+        {
+            [System.Runtime.InteropServices.DllImport("user32.dll")]
+            public extern static int SendMessage(IntPtr hWnd, uint msg, int wParam, int lParam);
+
+            private static int MakeParam(int loWord, int hiWord)
+            {
+                return (hiWord << 16) | (loWord & 0xffff);
+            }
+
+            protected override void OnGotFocus(EventArgs e)
+            {
+                base.OnGotFocus(e);
+                SendMessage(this.Handle, 0x0128, MakeParam(1, 0x1), 0);
+            }
+        }
+
         private void dynamicComponent()
         {
             int currentDeep = 12;
             label = new Label[bc.Length];
-            trackBar = new TrackBar[bc.Length];
+            trackBar = new NoFocusTrackBar[bc.Length];
             for (int i = 0; i < bc.Length; i++)
             {
 
-                trackBar[i] = new TrackBar();
+                trackBar[i] = new NoFocusTrackBar();
                 trackBar[i].Location = new Point(96, currentDeep);
                 trackBar[i].Size = new Size(565, 45);
                 trackBar[i].Scroll += new EventHandler(trackBar_Scroll);
@@ -256,7 +274,6 @@ namespace BrightnessControl
             List<IntPtr> screenHandle = new List<IntPtr>();
             for (int i = 0; i < screen.Length; i++)
             {
-                Location = screen[i].WorkingArea.Location;
                 BrightnessController temp = null;
                 try
                 {
@@ -366,31 +383,56 @@ namespace BrightnessControl
             GC.Collect();
         }
 
-        private void notifyIcon1_MouseDoubleClick(object sender, MouseEventArgs e)
+        private void notifyIcon1_MouseClick(object sender, MouseEventArgs e)
         {
-            Show();
-            WindowState = FormWindowState.Normal;
+            if (e.Button == MouseButtons.Left)
+            {
+                scanScreen();
+                Show();
+                WindowState = FormWindowState.Normal;
 
-            if (GetTaskBarLocation() == TaskBarLocation.TOP)
-            {
-                Location = new Point(Screen.PrimaryScreen.WorkingArea.Width - Width, ClientSize.Height);
-            }
-            else if (GetTaskBarLocation() == TaskBarLocation.LEFT)
-            {
-                Location = new Point(Screen.PrimaryScreen.Bounds.Left + Screen.PrimaryScreen.WorkingArea.Left, Screen.PrimaryScreen.WorkingArea.Height - Height);
-            }
-            else if (GetTaskBarLocation() == TaskBarLocation.RIGHT)
-            {
-                Location = new Point(Screen.PrimaryScreen.WorkingArea.Width - ClientSize.Width, Screen.PrimaryScreen.WorkingArea.Height - Height);
-            }
-            else
-            {
-                Location = new Point(Screen.PrimaryScreen.WorkingArea.Width - Width, Screen.PrimaryScreen.WorkingArea.Height - Height);
-            }
+                if (GetTaskBarLocation() == TaskBarLocation.TOP)
+                {
+                    Location = new Point(Screen.PrimaryScreen.WorkingArea.Width - Width, ClientSize.Height);
+                }
+                else if (GetTaskBarLocation() == TaskBarLocation.LEFT)
+                {
+                    Location = new Point(Screen.PrimaryScreen.Bounds.Left + Screen.PrimaryScreen.WorkingArea.Left, Screen.PrimaryScreen.WorkingArea.Height - Height);
+                }
+                else if (GetTaskBarLocation() == TaskBarLocation.RIGHT)
+                {
+                    Location = new Point(Screen.PrimaryScreen.WorkingArea.Width - ClientSize.Width, Screen.PrimaryScreen.WorkingArea.Height - Height);
+                }
+                else
+                {
+                    Location = new Point(Screen.PrimaryScreen.WorkingArea.Width - Width, Screen.PrimaryScreen.WorkingArea.Height - Height);
+                }
 
-            Activate();
-            GC.Collect();
+                Activate();
+                GC.Collect();
+            }
         }
+
+        public static bool ApplicationIsActivated()
+        {
+            var activatedHandle = GetForegroundWindow();
+            if (activatedHandle == IntPtr.Zero)
+            {
+                return false;       // No window is currently activated
+            }
+
+            var procId = Process.GetCurrentProcess().Id;
+            int activeProcId;
+            GetWindowThreadProcessId(activatedHandle, out activeProcId);
+
+            return activeProcId == procId;
+        }
+
+        [DllImport("user32.dll", CharSet = CharSet.Auto, ExactSpelling = true)]
+        private static extern IntPtr GetForegroundWindow();
+
+        [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
+        private static extern int GetWindowThreadProcessId(IntPtr handle, out int processId);
 
         private void BrightnessControl_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -421,12 +463,6 @@ namespace BrightnessControl
         {
             notifyIcon1.Visible = true;
             Hide();
-        }
-
-        private void reloadMonitorToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Process.Start(System.Reflection.Assembly.GetEntryAssembly().Location);
-            Application.Exit();
         }
 
         private void increaseBrightnessToolStripMenuItem_KeyDown(object sender, KeyEventArgs e)
