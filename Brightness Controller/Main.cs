@@ -3,6 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
+using System.IO;
+using System.Net;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
@@ -206,7 +208,31 @@ namespace BrightnessControl
             }
             ClientSize = new Size(trackBar[0].Location.X + trackBar[0].Width + 6, trackBar[trackBar.Length - 1].Location.Y + trackBar[trackBar.Length - 1].Height - 3);
             Location = new Point((Screen.PrimaryScreen.WorkingArea.Width - Width), (Screen.PrimaryScreen.WorkingArea.Height - Height));
-            CheckUpdate();
+
+            // Delete Old Update File
+            try
+            {
+                string OldExeLocation = System.Reflection.Assembly.GetEntryAssembly().Location + ".old";
+                if (File.Exists(OldExeLocation))
+                {
+                    File.Delete(OldExeLocation);
+                }
+            }
+            catch (Exception) { }
+
+            // Check Update
+            try
+            {
+                using (WebClient client = new WebClient())
+                {
+                    client.CachePolicy = new System.Net.Cache.RequestCachePolicy(System.Net.Cache.RequestCacheLevel.NoCacheNoStore);
+                    string CheckVersion = client.DownloadString("https://minormole.github.io/Brightness_Controller/update/version");
+                    if (CheckVersion.Contains(".") & Application.ProductVersion != CheckVersion)
+                    {
+                        Updater();
+                    }
+                }
+            } catch (Exception) {}
         }
 
         private void scanScreen()
@@ -465,9 +491,35 @@ namespace BrightnessControl
             return taskBarLocation;
         }
 
-        private void CheckUpdate()
+        private void Updater()
         {
-            MessageBox.Show("Test");
+
+            string ExeLocation = System.Reflection.Assembly.GetEntryAssembly().Location;
+
+            try
+            {
+                using (WebClient client = new WebClient())
+                {
+                    client.CachePolicy = new System.Net.Cache.RequestCachePolicy(System.Net.Cache.RequestCacheLevel.NoCacheNoStore);
+                    client.DownloadFile("https://minormole.github.io/Brightness_Controller/update/Brightness%20Controller.exe", ExeLocation + ".new");
+                }
+
+                if (File.Exists(ExeLocation + ".new"))
+                {
+                    File.Move(ExeLocation, ExeLocation + ".old");
+                    File.Move(ExeLocation + ".new", ExeLocation);
+                    Process.Start(ExeLocation);
+                    Application.Exit();
+                }
+            }
+            catch (Exception)
+            {
+                try
+                {
+                    File.Delete(ExeLocation + ".new");
+                }
+                catch (Exception) {}
+            }
         }
 
     }

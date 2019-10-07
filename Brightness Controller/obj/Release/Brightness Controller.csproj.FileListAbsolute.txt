@@ -1,7 +1,6 @@
 F:\Development\Brightness_Controller\Brightness Controller\bin\Release\Brightness Controller.exe.config
 F:\Development\Brightness_Controller\Brightness Controller\bin\Release\Brightness Controller.exe
 F:\Development\Brightness_Controller\Brightness Controller\bin\Release\Brightness Controller.pdb
-F:\Development\Brightness_Controller\Brightness Controller\obj\Release\Brightness Controller.csprojAssemblyReference.cache
 F:\Development\Brightness_Controller\Brightness Controller\obj\Release\BrightnessControl.BrightnessControl.resources
 F:\Development\Brightness_Controller\Brightness Controller\obj\Release\Brightness_Controller.Properties.Resources.resources
 F:\Development\Brightness_Controller\Brightness Controller\obj\Release\Brightness Controller.csproj.GenerateResource.cache
