@@ -210,17 +210,19 @@ namespace BrightnessControl
             ClientSize = new Size(trackBar[0].Location.X + trackBar[0].Width + 6, trackBar[trackBar.Length - 1].Location.Y + trackBar[trackBar.Length - 1].Height - 3);
             Location = new Point((Screen.PrimaryScreen.WorkingArea.Width - Width), (Screen.PrimaryScreen.WorkingArea.Height - Height));
 
-            // Delete Old Update File
-            try
+        // Delete Old Update File
+        TryAgain: try
             {
                 string OldExeLocation = System.Reflection.Assembly.GetEntryAssembly().Location + ".old";
                 if (File.Exists(OldExeLocation))
                 {
-                    Thread.Sleep(1000);
                     File.Delete(OldExeLocation);
                 }
             }
-            catch (Exception) { }
+            catch (Exception)
+            {
+                goto TryAgain;
+            }
 
             // Check Update
             try
