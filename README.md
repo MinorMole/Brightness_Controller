@@ -30,10 +30,6 @@ It's work with most of GPU and monitor (even latest 4K monitor) and work well wi
 
 ## [Download](https://github.com/MinorMole/Brightness_Controller/releases)
 
-## Note
-
-If you have change any connector of your monitor or just start PC up from sleep mode while the software still running you may need to right-click at the Brightness Controller notify icon and click "Reload Monitor"
-
 ## Licence
 
 Licenced under the [MIT License](https://github.com/MinorMole/Brightness_Controller/blob/master/LICENSE).
