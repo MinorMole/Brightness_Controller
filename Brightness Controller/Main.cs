@@ -393,7 +393,7 @@ namespace BrightnessControl
 
                 if (GetTaskBarLocation() == TaskBarLocation.TOP)
                 {
-                    Location = new Point(Screen.PrimaryScreen.WorkingArea.Width - Width, ClientSize.Height);
+                    Location = new Point(Screen.PrimaryScreen.WorkingArea.Width - Width, Screen.PrimaryScreen.Bounds.Height - Screen.PrimaryScreen.WorkingArea.Height);
                 }
                 else if (GetTaskBarLocation() == TaskBarLocation.LEFT)
                 {
