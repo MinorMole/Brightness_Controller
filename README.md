@@ -24,8 +24,10 @@ It's work with most of GPU and monitor (even latest 4K monitor) and work well wi
 
 ## Screenshot
 
-![](https://github.com/MinorMole/Brightness_Controller/raw/master/docs/01.png)
-![](https://github.com/MinorMole/Brightness_Controller/raw/master/docs/02.png)
+<p align="center">
+  <img height="85" src="https://github.com/MinorMole/Brightness_Controller/raw/master/docs/01.png">
+  <img height="85" src="https://github.com/MinorMole/Brightness_Controller/raw/master/docs/02.png">
+</p>
 
 ## [Download](https://github.com/MinorMole/Brightness_Controller/releases)
 
