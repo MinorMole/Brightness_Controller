@@ -89,8 +89,6 @@ namespace BrightnessControl
             {
                 int id = m.WParam.ToInt32();
 
-                scanScreen();
-
                 // MessageBox.Show(string.Format("Hotkey #{0} pressed", id));
 
                 // 6. Handle what will happen once a respective hotkey is pressed
@@ -274,6 +272,7 @@ namespace BrightnessControl
             List<IntPtr> screenHandle = new List<IntPtr>();
             for (int i = 0; i < screen.Length; i++)
             {
+                Location = screen[i].WorkingArea.Location; // DON'T REMOVE THIS LINE, IT USE TO SCAN MONITOR // SOMEONE PLS FIX THIS IF YOU CAN BECAUSE IT GLITCH THE UI SO BADLY						  
                 BrightnessController temp = null;
                 try
                 {
@@ -387,7 +386,6 @@ namespace BrightnessControl
         {
             if (e.Button == MouseButtons.Left)
             {
-                scanScreen();
                 Show();
                 WindowState = FormWindowState.Normal;
 
@@ -491,8 +489,7 @@ namespace BrightnessControl
                 exampleRegistryKey.SetValue("increaseBrightness_HotKey_Value", increaseHotkeyValue);
                 exampleRegistryKey.SetValue("decreaseBrightness_HotKey_Value", decreaseHotkeyValue);
                 exampleRegistryKey.Close();
-                Process.Start(System.Reflection.Assembly.GetEntryAssembly().Location);
-                Application.Exit();
+                RestartProgram(System.Reflection.Assembly.GetEntryAssembly().Location);
             }
             else
             {
@@ -513,8 +510,7 @@ namespace BrightnessControl
             exampleRegistryKey.SetValue("increaseBrightness_HotKey_Value", 0);
             exampleRegistryKey.SetValue("decreaseBrightness_HotKey_Value", 0);
             exampleRegistryKey.Close();
-            Process.Start(System.Reflection.Assembly.GetEntryAssembly().Location);
-            Application.Exit();
+            RestartProgram(System.Reflection.Assembly.GetEntryAssembly().Location);
         }
 
         private enum TaskBarLocation { TOP, BOTTOM, LEFT, RIGHT }
@@ -554,9 +550,26 @@ namespace BrightnessControl
             else
             {
                 File.Move(System.Reflection.Assembly.GetEntryAssembly().Location, AppData);
-                Process.Start(AppData);
-                Application.Exit();
+                RestartProgram(AppData);
             }
+        }
+
+        private void ReloadMonitorToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            RestartProgram(System.Reflection.Assembly.GetEntryAssembly().Location);
+        }
+
+        private void RestartProgram(string location)
+        {
+            Process process = new Process();
+            ProcessStartInfo startInfo = new ProcessStartInfo();
+            startInfo.WindowStyle = ProcessWindowStyle.Hidden;
+            startInfo.FileName = "cmd.exe";
+            startInfo.Arguments = "/C ping 127.0.0.1 -n 1 -w 1000 > NUL & " + (char)34 + location + (char)34 + " > NUL";
+            process.StartInfo = startInfo;
+            process.Start();
+            process.Close();
+            Application.Exit();
         }
 
         private void Updater()
@@ -576,8 +589,7 @@ namespace BrightnessControl
                 {
                     File.Move(ExeLocation, ExeLocation + ".old");
                     File.Move(ExeLocation + ".new", ExeLocation);
-                    Process.Start(ExeLocation);
-                    Application.Exit();
+                    RestartProgram(ExeLocation);
                 }
             }
             catch (Exception)

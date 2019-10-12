@@ -40,6 +40,7 @@
             this.removeHotkeyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addStartupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.reloadMonitorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -57,9 +58,10 @@
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.assignHotKeyToolStripMenuItem,
             this.addStartupToolStripMenuItem,
+            this.reloadMonitorToolStripMenuItem,
             this.exitToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(262, 133);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(262, 165);
             this.contextMenuStrip1.Opening += new System.ComponentModel.CancelEventHandler(this.ContextMenuStrip1_Opening);
             // 
             // assignHotKeyToolStripMenuItem
@@ -128,6 +130,13 @@
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
+            // reloadMonitorToolStripMenuItem
+            // 
+            this.reloadMonitorToolStripMenuItem.Name = "reloadMonitorToolStripMenuItem";
+            this.reloadMonitorToolStripMenuItem.Size = new System.Drawing.Size(261, 32);
+            this.reloadMonitorToolStripMenuItem.Text = "Reload Monitor";
+            this.reloadMonitorToolStripMenuItem.Click += new System.EventHandler(this.ReloadMonitorToolStripMenuItem_Click);
+            // 
             // BrightnessControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -165,5 +174,6 @@
         private System.Windows.Forms.ToolStripMenuItem removeHotkeyToolStripMenuItem;
         private System.Windows.Forms.ToolStripTextBox hotKeyToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem addStartupToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem reloadMonitorToolStripMenuItem;
     }
 }
