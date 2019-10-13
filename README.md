@@ -19,7 +19,7 @@ It's work with most of GPU and monitor (even latest 4K monitor) and work well wi
 * Control the actual monitor's brightness.
 * Can control multiple monitor.
 * Supports the large number of PC's monitor and GPU.
-* Supports with latest Windows 10 and older. 
+* Supports with latest Windows 10 and older.
 * Can assign hotkey to change brightness from your keyboard.
 
 ## Screenshot
