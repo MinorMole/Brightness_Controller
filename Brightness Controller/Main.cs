@@ -565,9 +565,7 @@ namespace BrightnessControl
 
         private async void Updater()
         {
-            await Task.Delay(1);
-            string NewExeLocations = AppDomain.CurrentDomain.BaseDirectory + "Brightness Controller.exe";
-            MessageBox.Show(NewExeLocations);
+            await Task.Delay(60000);
             try
             {
                 using (WebClient client = new WebClient())
@@ -577,24 +575,23 @@ namespace BrightnessControl
                     if (CheckVersion.Contains(".") & Application.ProductVersion != CheckVersion)
                     {
                         string ExeLocation = System.Reflection.Assembly.GetEntryAssembly().Location;
-                        string NewExeLocation = AppDomain.CurrentDomain.BaseDirectory + @"\Brightness Controller.exe";
+                        string NewExeLocation = AppDomain.CurrentDomain.BaseDirectory + "Brightness Controller.exe";
                         try
                         {
-                            client.CachePolicy = new System.Net.Cache.RequestCachePolicy(System.Net.Cache.RequestCacheLevel.NoCacheNoStore);
-                            client.DownloadFile("https://minormole.github.io/Brightness_Controller/update/Brightness%20Controller.zip", ExeLocation + ".new");
-                            if (File.Exists(ExeLocation + ".new"))
+                            client.DownloadFile("https://minormole.github.io/Brightness_Controller/update/Brightness%20Controller.zip", NewExeLocation + ".new");
+                            if (File.Exists(NewExeLocation + ".new"))
                             {
-                                File.Move(ExeLocation, ExeLocation + ".old");
-                                ZipFile.ExtractToDirectory(ExeLocation + ".new", AppDomain.CurrentDomain.BaseDirectory);
-                                File.Delete(ExeLocation + ".new");
-                                RestartProgram(ExeLocation);
+                                File.Move(ExeLocation, NewExeLocation + ".old");
+                                ZipFile.ExtractToDirectory(NewExeLocation + ".new", AppDomain.CurrentDomain.BaseDirectory);
+                                File.Delete(NewExeLocation + ".new");
+                                RestartProgram(NewExeLocation);
                             }
                         }
                         catch (Exception)
                         {
                             try
                             {
-                                File.Delete(ExeLocation + ".new");
+                                File.Delete(NewExeLocation + ".new");
                             }
                             catch (Exception) { }
                         }
@@ -603,6 +600,7 @@ namespace BrightnessControl
             }
             catch (Exception) { }
         }
+
     }
 
     public class BrightnessController : IDisposable
