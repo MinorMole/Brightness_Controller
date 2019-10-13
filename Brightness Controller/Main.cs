@@ -4,8 +4,10 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
+using System.IO.Compression;
 using System.Net;
 using System.Runtime.InteropServices;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace BrightnessControl
@@ -34,7 +36,7 @@ namespace BrightnessControl
         public BrightnessControl()
         {
             InitializeComponent();
-            Opacity = 0;
+            Opacity = 1;
 
             //HotKey
             try
@@ -250,18 +252,7 @@ namespace BrightnessControl
             }
 
             // Check Update
-            try
-            {
-                using (WebClient client = new WebClient())
-                {
-                    client.CachePolicy = new System.Net.Cache.RequestCachePolicy(System.Net.Cache.RequestCacheLevel.NoCacheNoStore);
-                    string CheckVersion = client.DownloadString("https://minormole.github.io/Brightness_Controller/update/version");
-                    if (CheckVersion.Contains(".") & Application.ProductVersion != CheckVersion)
-                    {
-                        Updater();
-                    }
-                }
-            } catch (Exception) {}
+            Updater();
 
         }
 
@@ -572,36 +563,46 @@ namespace BrightnessControl
             Application.Exit();
         }
 
-        private void Updater()
+        private async void Updater()
         {
-
-            string ExeLocation = System.Reflection.Assembly.GetEntryAssembly().Location;
-
+            await Task.Delay(1);
+            string NewExeLocations = AppDomain.CurrentDomain.BaseDirectory + "Brightness Controller.exe";
+            MessageBox.Show(NewExeLocations);
             try
             {
                 using (WebClient client = new WebClient())
                 {
                     client.CachePolicy = new System.Net.Cache.RequestCachePolicy(System.Net.Cache.RequestCacheLevel.NoCacheNoStore);
-                    client.DownloadFile("https://minormole.github.io/Brightness_Controller/update/Brightness%20Controller.exe", ExeLocation + ".new");
-                }
-
-                if (File.Exists(ExeLocation + ".new"))
-                {
-                    File.Move(ExeLocation, ExeLocation + ".old");
-                    File.Move(ExeLocation + ".new", ExeLocation);
-                    RestartProgram(ExeLocation);
+                    string CheckVersion = client.DownloadString("https://minormole.github.io/Brightness_Controller/update/version");
+                    if (CheckVersion.Contains(".") & Application.ProductVersion != CheckVersion)
+                    {
+                        string ExeLocation = System.Reflection.Assembly.GetEntryAssembly().Location;
+                        string NewExeLocation = AppDomain.CurrentDomain.BaseDirectory + @"\Brightness Controller.exe";
+                        try
+                        {
+                            client.CachePolicy = new System.Net.Cache.RequestCachePolicy(System.Net.Cache.RequestCacheLevel.NoCacheNoStore);
+                            client.DownloadFile("https://minormole.github.io/Brightness_Controller/update/Brightness%20Controller.zip", ExeLocation + ".new");
+                            if (File.Exists(ExeLocation + ".new"))
+                            {
+                                File.Move(ExeLocation, ExeLocation + ".old");
+                                ZipFile.ExtractToDirectory(ExeLocation + ".new", AppDomain.CurrentDomain.BaseDirectory);
+                                File.Delete(ExeLocation + ".new");
+                                RestartProgram(ExeLocation);
+                            }
+                        }
+                        catch (Exception)
+                        {
+                            try
+                            {
+                                File.Delete(ExeLocation + ".new");
+                            }
+                            catch (Exception) { }
+                        }
+                    }
                 }
             }
-            catch (Exception)
-            {
-                try
-                {
-                    File.Delete(ExeLocation + ".new");
-                }
-                catch (Exception) {}
-            }
+            catch (Exception) { }
         }
-
     }
 
     public class BrightnessController : IDisposable

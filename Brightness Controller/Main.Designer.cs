@@ -39,8 +39,8 @@
             this.confirmToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.removeHotkeyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addStartupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reloadMonitorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -61,7 +61,7 @@
             this.reloadMonitorToolStripMenuItem,
             this.exitToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(262, 165);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(262, 132);
             this.contextMenuStrip1.Opening += new System.ComponentModel.CancelEventHandler(this.ContextMenuStrip1_Opening);
             // 
             // assignHotKeyToolStripMenuItem
@@ -123,19 +123,19 @@
             this.addStartupToolStripMenuItem.Text = "Windows Startup (Off)";
             this.addStartupToolStripMenuItem.Click += new System.EventHandler(this.AddStartupToolStripMenuItem_Click);
             // 
-            // exitToolStripMenuItem
-            // 
-            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(261, 32);
-            this.exitToolStripMenuItem.Text = "Exit";
-            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
-            // 
             // reloadMonitorToolStripMenuItem
             // 
             this.reloadMonitorToolStripMenuItem.Name = "reloadMonitorToolStripMenuItem";
             this.reloadMonitorToolStripMenuItem.Size = new System.Drawing.Size(261, 32);
             this.reloadMonitorToolStripMenuItem.Text = "Reload Monitor";
             this.reloadMonitorToolStripMenuItem.Click += new System.EventHandler(this.ReloadMonitorToolStripMenuItem_Click);
+            // 
+            // exitToolStripMenuItem
+            // 
+            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(261, 32);
+            this.exitToolStripMenuItem.Text = "Exit";
+            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
             // BrightnessControl
             // 
@@ -149,6 +149,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "BrightnessControl";
+            this.Opacity = 0.01D;
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Brightness Controller";
